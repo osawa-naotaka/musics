@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- 10修正: CSP -->
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://img.youtube.com; frame-src https://www.youtube.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;">
+    <!-- 10修正ここまで -->
+
     <!-- web font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,443 +29,14 @@
     <meta name="description" content="lulliecat musics.では作者の好きな音楽をご紹介します。">
 
     <title>lulliecat musics</title>
-    <style>
-        /* 初期化 */
-        * {
-            /* マージンとパディングを全てリセット */
-            margin: 0;
-            padding: 0;
 
-            /* widthをコンテンツ幅+パディング幅+境界線幅を表すように指定 */
-            box-sizing: border-box;
-        }
-        img {
-            /* img要素とsvg要素をブロック要素に指定 */
-            display: block;
-            max-width: 100%;
-        }
-        ul {
-            /* マーカーボックスを削除 */
-            list-style-type: none;
-        }
-        a {
-            /* 装飾を初期化 */
-            color: inherit;
-            text-decoration: none;
-        }
+    <!-- 10修正: stylesheetとjsを外部ファイルに分離 -->
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="./style.css">
 
-        /*
-         * パラメータ
-         */
-        :root {
-            --background-color: #f0f0f0;
-            --background-color-dark: #e0e0e0;
-            --background-color-header: #f0f0f0c0;
-            --accent-color: #d7003a;
-            --main-color: #303030;
-            --main-color-dim: #303030f0;
-            --shadow-color: #000000;
-
-            --header-height: 2rlh;
-            --nav-height: 1rlh;
-            --max-content-width: 1200px;
-            --max-num-column: 3;
-            --grid-column-width: calc(var(--max-content-width) / (var(--max-num-column) + 1));
-        }
-
-        /*
-         * 全体的な設定
-         */
-        :root {
-            /* 装飾 */
-            font-family: "Roboto", "Noto Sans JP", serif;
-            font-size: 18px;
-            color: var(--main-color);
-            line-height: 1.8;
-        }
-
-        /* コンテナ */
-        main, aside {
-            /* 寸法 */
-            padding-inline: 1rem;
-            padding-block: 2rlh;
-        }
-        main {
-            /* 装飾 */
-            background-color: var(--background-color);
-        }
-        aside {
-            /* 装飾 */
-            background-color: var(--background-color-dark);
-        }
-
-        /* セクション */
-        section {
-            /* 寸法 */
-            width: 100%;
-            max-width: var(--max-content-width);
-            margin-inline: auto; /* 中央寄せ - widthを指定してmargin-inlineをautoにすることにより中央寄せができる */
-
-            /* スクロールマージン(navリンクからのジャンプ時用) */
-            scroll-margin-block-start: var(--header-height);
-        }
-        section > header {
-            /* 配置 */
-            margin-block-end: 1rlh;
-        }
-        section > header > h2 {
-            /* 装飾 */
-            font-size: 4rem;
-            border-bottom: 8px solid;
-        }
-        section > header > h2::first-letter {
-            /* 装飾 */
-            color: var(--accent-color);
-        }
-
-        /* 要素 */
-        em {
-            font-style: normal;
-            font-weight: bold;
-        }
-
-        p {
-            /* 字下げ */
-            text-indent: 1rem;
-        }
-
-
-        /*
-         * Hero
-         */
-        /* ヒーロー画像 */
-        .hero {
-            /* カルーセル画像の拡大時にはみ出た画像をクリップする */
-            overflow: clip;
-
-            /* 寸法 */
-            width: 100%;
-            height: 100svh;
-        }
-        .hero > img {
-            /* ビューポートを基準にして絶対位置指定 */
-            position: fixed;
-            top: 0;
-            z-index: -1;
-
-            /* 画像をビューポートサイズに拡大縮小 */
-            width: 100%;
-            height: 100svh; /* スマホでのアドレスバーなどを含まない場合のビューポートの高さ */
-            object-fit: cover; /* アスペクト比を保ったまま拡大縮小。width/heightで指定した領域を全部カバーさせるように拡大縮小し、はみ出た部分はクリップする */
-        }
-
-        /* ヒーロー画像のカルーセルアニメーション */
-        .hero > img {
-            opacity: 0; /* アニメーション開始時は画像は透明 */
-            animation: carousel 16s infinite;
-        }
-        .hero > img:nth-of-type(2) {
-            animation-delay: 4s;
-        }
-        .hero > img:nth-of-type(3) {
-            animation-delay: 8s;
-        }
-        .hero > img:nth-of-type(4) {
-            animation-delay: 12s;
-        }
-        /* キーフレームの設定は、カルーセルで表示する画像の枚数に依存する */
-        @keyframes carousel {
-            0% {
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            25% {
-                opacity: 1;
-            }
-            35% {
-                opacity: 0;
-                scale: 1.03;
-            }
-            100% {
-                opacity: 0;
-            }
-        }
-
-        /* ヒーロー画像上に表示するウェブサイト名 */
-        .site-name-1, .site-name-2 {
-            /* 装飾 */
-            font-size: 7rem;
-            font-weight: bold;
-            color: var(--accent-color);
-
-            /* ビューポートを基準にして絶対位置指定 */
-            position: fixed;
-            left: 2rem;
-            z-index: -1;
-        }
-        .site-name-1 {
-            bottom: 9rem;
-        }
-        .site-name-2 {
-            bottom: 2rem;
-        }
-
-        @media screen and (max-width: 700px) {
-            .site-name-1 {
-                bottom: 6rem;
-            }
-            .site-name-2 {
-                bottom: 2rem;
-            }
-            .site-name-1, .site-name-2 {
-                font-size: 4rem;
-            }
-        }
-
-        /* ヒーロー画像上のウェブサイト名のスライドインアニメーション */
-        .site-name-1 {
-            opacity: 0; /* アニメーション開始時は画像は透明 */
-            animation: sitename ease-out 0.5s forwards 1s;
-        }
-        .site-name-2 {
-            opacity: 0;
-            animation: sitename ease-out 0.5s forwards 1.5s;
-        }
-        @keyframes sitename {
-            0% {
-                transform: translateY(32px);
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-
-        /*
-         * header
-         */
-        /* h1とnavをフレックスアイテムとするフレックスコンテナ */
-        .page-header {
-            /* 装飾 */
-            background-color: var(--background-color-header);
-            font-weight: bold;
-
-            /* このボックスをフレックスコンテナに指定する */
-            display: flex;
-
-            /* 粘着位置指定(スティッキー) */
-            position: sticky;
-
-            /* 寸法 */
-            width: 100%;
-            height: var(--header-height);
-            top: 0;
-            z-index: 1;
-            padding-inline: 1rem;
-
-            /* 整列 */
-            align-items: baseline;
-            justify-content: space-between;
-        }
-
-        /* フレックスアイテム1: h1 */
-        .page-header h1 {
-            /* 装飾 */
-            font-size: 2rem;
-        }
-
-        /* フレックスアイテム2.1 li */
-        .page-header h1 em {
-            /* 装飾 */
-            color: var(--accent-color);
-        }
-
-        /* フレックスアイテム2: nav */
-        /* navのリスト項目をフレックスアイテムとするフレックスコンテナ */
-        .page-header nav > ul {
-            /* このボックスをフレックスコンテナに指定する */
-            display: flex;
-
-            /* 寸法 */
-            gap: 1.5rem;
-        }
-        .page-header nav li:hover {
-            border-bottom: 2px solid var(--main-color-dim);
-        }
-        .page-header nav li::first-letter {
-            color: var(--accent-color);
-        }
-
-        /* ヘッダーが2行に溢れるくらいのビューポート幅になった場合の設定 */
-        @media screen and (max-width: 700px) {
-            .page-header {
-                /* ヘッダーを2行にする */
-                display: block;
-                height: calc(var(--header-height) + var(--nav-height));
-            }
-            .page-header nav {
-                /* navはflex-end(日本語の場合は右)に寄せる */
-                display: flex;
-                justify-content: flex-end;
-            }
-        }
-
-
-        /*
-         * music videos
-         */
-        /* .cardをグリッドアイテムとするグリッドコンテナ */
-        .card-container {
-            /* このボックスをグリッドコンテナに指定する */
-            display: grid;
-
-            /* グリッドアイテムの幅が--grid-column-widthと仮定し、列トラック数を決める。列トラック幅は等分になる */
-            grid-template-columns: repeat(auto-fill, minmax(var(--grid-column-width), 1fr));
-
-            /* グリッドコンテナ間の間隔 - 縦 横 */
-            gap: 3rem 1rem;
-        }
-
-        /* グリッドアイテム */
-        /* card */
-        .card img {
-            /* 装飾 */
-            border-radius: 8px;
-            box-shadow: 0 0 10px var(--shadow-color);
-
-            /* 寸法 */
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-        }
-        .card .artist::before {
-            content: " / ";
-        }
-
-        /* 1. 表示する動画を指定する */
-        /* タグのリストをフレックスアイテムとするフレックスコンテナ */
-        .music-tags {
-            /* このボックスをフレックスコンテナに指定する */
-            display: flex;
-
-            /* フレックスアイテム間の間隔 */
-            column-gap: 1rem;
-            row-gap: 0.5rem;
-
-            /* フレックスアイテムが1行で収まらない時は2行またはそれ以上に折り返す */
-            flex-wrap: wrap;
-
-            /* 装飾 */
-            background-color: var(--background-color-header);
-
-            /* 粘着位置指定(スティッキー) */
-            position: sticky;
-
-            /* 寸法 */
-            top: var(--header-height);
-            margin-inline: -2rem;
-            padding: 0 2rem 1rem 2rem;
-        }
-
-        /* フレックスアイテム */
-        /* タグのリスト */
-        /* タグの項目はラジオボタンとして実装する */
-        /* ラジオボタン自体は非表示 */
-        .music-tags > input {
-            /* 装飾 */
-            display: none;
-        }
-
-        /* タグの装飾・配置 */
-        .music-tags > label {
-            /* 装飾 */
-            font-weight: bold;
-            border: 1px solid var(--main-color);
-            border-radius: 4px;
-            cursor: pointer;
-
-            /* 配置 */
-            padding-inline: 0.5rem;
-            min-width: 4rem;
-            text-align: center;
-
-            /* 遷移アニメーション */
-            transition: color 0.3s, background-color 0.3s;
-        }
-
-        /* チェックの入ったラジオボタンのタグは色を反転させる */
-        .music-tags > input:checked + label {
-            /* 装飾 */
-            background-color: var(--accent-color);
-            color: var(--background-color);
-            border: 1px solid var(--accent-color);
-        }
-
-        /* 2. 選ばれた動画を表示する */
-        /* デフォルトでは動画はすべて表示しない */
-        .card {
-            display: none;
-        }
-
-        /* チェックの入ったラジオボタンをタグとして持つ動画のみ表示 */
-        #music-videos:has( #all:checked ) .card {
-            display: block;
-        }
-        #music-videos:has( #recommended:checked ) .card:has( .tags .recommended ),
-        #music-videos:has( #town:checked ) .card:has( .tags .town ),
-        #music-videos:has( #railroad:checked ) .card:has( .tags .railroad ),
-        #music-videos:has( #landscape:checked ) .card:has( .tags .landscape ),
-        #music-videos:has( #weather:checked ) .card:has( .tags .weather )
-        {
-            display: block;
-        }
-
-
-        /*
-         * about me
-         */
-        .about-me p {
-            /* 配置 */
-            margin-block: 1rlh;
-            max-width: 40rem; /* 横幅30-40文字程度が読みやすい */
-        }
-
-        /* 標準で二段組 */
-        .about-me .columns {
-            display: flex;
-            gap: 2rem;
-        }
-
-        @media screen and (max-width: 40rem) {
-            /* ビューポート幅が40文字分を下回ったら2段組を解除する */
-            .about-me .columns {
-                display: block;
-            }
-        }
-
-
-        /*
-         * footer
-         */
-         .page-footer {
-            /* 装飾 */
-            color: var(--background-color);
-            background-color: var(--main-color);
-
-            /* ビューポートを基準にして絶対位置指定 */
-            position: fixed;
-            bottom: 0;
-            z-index: 1;
-
-            /* 寸法 */
-            width: 100%;
-            height: 1rlh;
-
-            /* 整列 */
-            text-align: center;
-        }
-    </style>
+    <!-- script -->
+    <script src="./app.js" defer></script>
+    <!-- 10修正ここまで -->
 </head>
 <body>
 
@@ -510,21 +86,18 @@
                 <label for="recommended">おすすめ</label>
             </div>
 
-            <!-- 09修正: 動画プレイヤー -->
             <div class="player" role="dialog" aria-modal="true" aria-label="動画プレイヤー">
+                <button type="button" class="close">Close</button>
                 <iframe loading="lazy" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
-            <!-- 09修正ここまで -->
 
 
             <ul class="card-container">
                 <li class="card">
                     <figure>
-                        <!-- 09修正: 動画リンク修正 -->
                         <button type="button" class="play" data-video-id="xUya9uSFwvs">
                             <img src="https://img.youtube.com/vi/xUya9uSFwvs/sddefault.jpg" alt="夜の街イメージの動画を再生">
                         </button>
-                        <!-- 09修正ここまで -->
                         <figcaption>
                             <span class="song">夜の街イメージ (CC BY)</span>
                             <span class="artist">shoot japan</span>
@@ -536,11 +109,9 @@
                 </li>
                 <li class="card">
                     <figure>
-                        <!-- 09修正: 動画リンク修正 -->
                         <button type="button" class="play" data-video-id="nXuG6pE6Xa4">
                             <img src="https://img.youtube.com/vi/nXuG6pE6Xa4/sddefault.jpg" alt="東京新宿 夜の風景の動画を再生">
                         </button>
-                        <!-- 09修正ここまで -->
                         <figcaption>
                             <span class="song">東京新宿 夜の風景 (CC BY)</span>
                             <span class="artist">shoot japan</span>
@@ -552,11 +123,9 @@
                 </li>
                 <li class="card">
                     <figure>
-                        <!-- 09修正: 動画リンク修正 -->
                         <button type="button" class="play" data-video-id="jZI_0C-5U8Q">
                             <img src="https://img.youtube.com/vi/jZI_0C-5U8Q/sddefault.jpg" alt="ローカル線の車窓動画の動画を再生">
                         </button>
-                        <!-- 09修正ここまで -->
                         <figcaption>
                             <span class="song">ローカル線の車窓動画 (CC BY)</span>
                             <span class="artist">shoot japan</span>
@@ -569,11 +138,9 @@
                 </li>
                 <li class="card">
                     <figure>
-                        <!-- 09修正: 動画リンク修正 -->
                         <button type="button" class="play" data-video-id="kHyVKWzV22w">
                             <img src="https://img.youtube.com/vi/kHyVKWzV22w/hqdefault.jpg" alt="雪の日の車窓動画の動画を再生">
                         </button>
-                        <!-- 09修正ここまで -->
                         <figcaption>
                             <span class="song">雪の日の車窓動画 (CC BY)</span>
                             <span class="artist">shoot japan</span>
@@ -585,11 +152,9 @@
                 </li>
                 <li class="card">
                     <figure>
-                        <!-- 09修正: 動画リンク修正 -->
                         <button type="button" class="play" data-video-id="7IzaQMPWBD4">
                             <img src="https://img.youtube.com/vi/7IzaQMPWBD4/sddefault.jpg" alt="日本の風景 長野県松本市の動画を再生">
                         </button>
-                        <!-- 09修正ここまで -->
                         <figcaption>
                             <span class="song">日本の風景 長野県松本市 (CC BY)</span>
                             <span class="artist">shoot japan</span>
@@ -603,11 +168,9 @@
                 </li>
                 <li class="card">
                     <figure>
-                        <!-- 09修正: 動画リンク修正 -->
                         <button type="button" class="play" data-video-id="l-EkoUzqqrk">
                             <img src="https://img.youtube.com/vi/l-EkoUzqqrk/sddefault.jpg" alt="東京スカイツリー 夕方から夜への動画を再生">
                         </button>
-                        <!-- 09修正ここまで -->
                         <figcaption>
                             <span class="song">東京スカイツリー 夕方から夜へ (CC BY)</span>
                             <span class="artist">shoot japan</span>
@@ -619,11 +182,9 @@
                 </li>
                 <li class="card">
                     <figure>
-                        <!-- 09修正: 動画リンク修正 -->
                         <button type="button" class="play" data-video-id="7PLMpry7x60">
                             <img src="https://img.youtube.com/vi/7PLMpry7x60/sddefault.jpg" alt="長尾峠から箱根 芦ノ湖が見える絶景パノラマ風景の動画を再生">
                         </button>
-                        <!-- 09修正ここまで -->
                         <figcaption>
                             <span class="song">長尾峠から箱根 芦ノ湖が見える絶景パノラマ風景 (CC BY)</span>
                             <span class="artist">shoot japan</span>
@@ -636,11 +197,9 @@
                 </li>
                 <li class="card">
                     <figure>
-                        <!-- 09修正: 動画リンク修正 -->
                         <button type="button" class="play" data-video-id="jiOUus2rkcA">
                             <img src="https://img.youtube.com/vi/jiOUus2rkcA/sddefault.jpg" alt="雨の動画を再生">
                         </button>
-                        <!-- 09修正ここまで -->
                         <figcaption>
                             <span class="song">雨 (CC BY)</span>
                             <span class="artist">shoot japan</span>
@@ -653,11 +212,9 @@
                 </li>
                 <li class="card">
                     <figure>
-                        <!-- 09修正: 動画リンク修正 -->
                         <button type="button" class="play" data-video-id="_ixZMVAa-zo">
                             <img src="https://img.youtube.com/vi/_ixZMVAa-zo/sddefault.jpg" alt="桜の動画を再生">
                         </button>
-                        <!-- 09修正ここまで -->
                         <figcaption>
                             <span class="song">桜 (CC BY)</span>
                             <span class="artist">shoot japan</span>
@@ -708,31 +265,5 @@
     <footer class="page-footer">
         © 2026 lulliecat
     </footer>
-
-    <!-- 09修正: 動画プレイヤー用コード -->
-    <script>
-        function ad_hoc_sanitize(str)
-        {
-            return str.replace(/&/g, '').replace(/</g, '').replace(/>/g, '').replace(/"/g, '').replace(/'/g, '');
-        }
-
-        const player        = document.querySelector(".player");
-        const player_iframe = player.querySelector("iframe");
-
-        function play(button)
-        {
-            const id = ad_hoc_sanitize(button.dataset.videoId);
-            player_iframe.src = `https://www.youtube.com/embed/${id}`;
-            console.log(player_iframe.src)
-        }
-
-        // open
-        document.querySelectorAll(".card .play").forEach((button) => {
-            button.addEventListener('click', () => play(button));
-        });
-
-    </script>
-    <!-- 09修正ここまで -->
-
 </body>
 </html>
