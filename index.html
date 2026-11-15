@@ -5,12 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lulliecat musics</title>
     <style>
+        ul {
+            list-style-type: none;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        em {
+            font-style: normal;
+            font-weight: bold;
+        }
+        p {
+            text-indent: 1rem;
+        }
         :root {
             --background-color: #f0f0f0;
             --background-color-dark: #e0e0e0;
             --accent-color: #d7003a;
             --main-color: #303030;
             --main-color-dim: #303030f0;
+            --shadow-color: #000000;
         }
         :root {
             font-size: 18px;
@@ -23,6 +38,36 @@
         aside {
             background-color: var(--background-color-dark);
         }
+
+        section > header > h2 {
+            font-size: 4rem;
+            border-bottom: 8px solid;
+        }
+        section > header > h2::first-letter {
+            color: var(--accent-color);
+        }
+
+        .page-header h1 {
+            font-size: 7rem;
+        }
+        .page-header h1 em {
+            color: var(--accent-color);
+        }
+        .page-header nav li:hover {
+            border-bottom: 2px solid var(--main-color-dim);
+        }
+        .page-header nav li::first-letter {
+            color: var(--accent-color);
+        }
+
+        .card img {
+            border-radius: 8px;
+            box-shadow: 0 0 10px var(--shadow-color);
+        }
+        .card .artist::before {
+            content: " / ";
+        }
+
         .page-footer {
             color: var(--background-color);
             background-color: var(--main-color);
@@ -48,7 +93,7 @@
                 <h2>music videos.</h2>
             </header>
             <ul>
-                <li>
+                <li class="card">
                     <figure>
                         <a href="https://www.youtube.com/watch?v=xUya9uSFwvs">
                             <img src="https://img.youtube.com/vi/xUya9uSFwvs/sddefault.jpg" alt="夜の街イメージ YouTube動画">
@@ -59,7 +104,7 @@
                         </figcaption>
                     </figure>
                 </li>
-                <li>
+                <li class="card">
                     <figure>
                         <a href="https://www.youtube.com/watch?v=nXuG6pE6Xa4">
                             <img src="https://img.youtube.com/vi/nXuG6pE6Xa4/sddefault.jpg" alt="東京新宿 夜の風景 YouTube動画">
@@ -70,7 +115,7 @@
                         </figcaption>
                     </figure>
                 </li>
-                <li>
+                <li class="card">
                     <figure>
                         <a href="https://www.youtube.com/watch?v=jZI_0C-5U8Q">
                             <img src="https://img.youtube.com/vi/jZI_0C-5U8Q/sddefault.jpg" alt="ローカル線の車窓動画 YouTube動画">
