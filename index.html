@@ -4,9 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lulliecat musics</title>
+    <style>
+        :root {
+            --background-color: #f0f0f0;
+            --background-color-dark: #e0e0e0;
+            --accent-color: #d7003a;
+            --main-color: #303030;
+            --main-color-dim: #303030f0;
+        }
+        :root {
+            font-size: 18px;
+            color: var(--main-color);
+            line-height: 1.8;
+        }
+        main, .page-header {
+            background-color: var(--background-color);
+        }
+        aside {
+            background-color: var(--background-color-dark);
+        }
+        .page-footer {
+            color: var(--background-color);
+            background-color: var(--main-color);
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <header class="page-header">
         <h1>lulliecat <em>m</em>usics</h1>
         <nav>
             <ul>
@@ -86,6 +111,6 @@
             </p>
         </section>
     </aside>
-    <footer>© 2026 lulliecat</footer>
+    <footer class="page-footer">© 2026 lulliecat</footer>
 </body>
 </html>
