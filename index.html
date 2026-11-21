@@ -3,99 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lulliecat musics</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            border: 0 none;
-            box-sizing: border-box;
-        }
-        img {
-            display: block;
-            max-width: 100%;
-        }
-        ul {
-            list-style-type: none;
-        }
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-        em {
-            font-style: normal;
-            font-weight: bold;
-        }
-        p {
-            text-indent: 1rem;
-        }
-        :root {
-            --background-color: #f0f0f0;
-            --background-color-dark: #e0e0e0;
-            --accent-color: #d7003a;
-            --main-color: #303030;
-            --main-color-dim: #303030f0;
-            --shadow-color: #000000;
-        }
-        :root {
-            font-size: 18px;
-            color: var(--main-color);
-            line-height: 1.8;
-        }
-        main, aside, .page-header {
-            padding-inline: 1rem;
-            padding-block: 2rlh;
-        }
-        main, .page-header {
-            background-color: var(--background-color);
-        }
-        aside {
-            background-color: var(--background-color-dark);
-        }
 
-        section > header {
-            margin-block-end: 1rlh;
-        }
-        section > header > h2 {
-            font-size: 4rem;
-            border-bottom: 8px solid;
-        }
-        section > header > h2::first-letter {
-            color: var(--accent-color);
-        }
+    <!-- 10修正: CSP -->
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://img.youtube.com; frame-src https://www.youtube.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;">
+    <!-- 10修正ここまで -->
 
-        .page-header h1 {
-            font-size: 7rem;
-        }
-        .page-header h1 em {
-            color: var(--accent-color);
-        }
-        .page-header nav li:hover {
-            border-bottom: 2px solid var(--main-color-dim);
-        }
-        .page-header nav li::first-letter {
-            color: var(--accent-color);
-        }
+    <!-- web font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-        .card img {
-            border-radius: 8px;
-            box-shadow: 0 0 10px var(--shadow-color);
-        }
-        .card .artist::before {
-            content: " / ";
-        }
+    <!-- favicon  -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-        .page-footer {
-            color: var(--background-color);
-            background-color: var(--main-color);
-            text-align: center;
-        }
-    </style>
+    <title>lulliecat musics.</title>
+    <meta name="description" content="lulliecat musics.では作者の好きな音楽をご紹介します。">
+    <link rel="canonical" href="https://osawa-naotaka.github.io/musics/">
+
+    <!-- Open Graph (Facebook, LinkedIn, Discord, Slack) -->
+    <meta property="og:title" content="lulliecat musics.">
+    <meta property="og:description" content="lulliecat musics.では作者の好きな音楽をご紹介します。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://osawa-naotaka.github.io/musics/">
+    <meta property="og:image" content="https://osawa-naotaka.github.io/musics/favicon.svg">
+    <meta property="og:image:alt" content="lulliecat musics.">
+    <meta property="og:site_name" content="https://osawa-naotaka.github.io/musics/">
+    <meta property="og:locale" content="ja_JP">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="lulliecat musics.">
+    <meta name="twitter:description" content="lulliecat musics.では作者の好きな音楽をご紹介します。">
+    <meta name="twitter:image" content="https://osawa-naotaka.github.io/musics/favicon.svg">
+    <meta name="twitter:image:alt" content="lulliecat musics.">
+    <meta name="twitter:site" content="@lulliecat">
+
+    <!-- 10修正: stylesheetとjsを外部ファイルに分離 -->
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="./style.css">
+    <!-- 10修正ここまで -->
+
 </head>
 <body>
+
+    <div class="hero">
+        <img src="./robbie-noble-hSygsHzG9ok-unsplash.jpg" alt="hero 1">
+        <img src="./haley-powers-rjhvXX7JBPc-unsplash.jpg" alt="hero 2">
+        <img src="./michael-dobrinski-JxufJsFmvW0-unsplash.jpg" alt="hero 3">
+        <img src="./joshua-fuller-ta7rN3NcWyM-unsplash-resized.jpg" alt="hero 4">
+        <div class="site-name-1">lulliecat</div>
+        <div class="site-name-2">musics.</div>
+    </div>
+
     <header class="page-header">
-        <h1>lulliecat <em>m</em>usics</h1>
-        <nav>
+        <h1>lulliecat <em>m</em>usics.</h1>
+        <nav class="navigation">
             <ul>
                 <li><a href="#">home</a></li>
                 <li><a href="#music-videos">music videos</a></li>
@@ -105,74 +68,224 @@
     </header>
 
     <main>
-        <section id="music-videos">
+        <section class="music-videos" id="music-videos">
             <header>
                 <h2>music videos.</h2>
             </header>
-            <ul>
+
+            <div class="music-tags">
+                <label>
+                    <input type="radio" name="tag" id="all">
+                    <span>全て</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="tag" id="town">
+                    <span>街</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="tag" id="railroad">
+                    <span>鉄道</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="tag" id="landscape">
+                    <span>風景</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="tag" id="weather">
+                    <span>天気</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="tag" id="recommended" checked>
+                    <span>おすすめ</span>
+                </label>
+            </div>
+
+            <ul class="card-container">
                 <li class="card">
                     <figure>
-                        <a href="https://www.youtube.com/watch?v=xUya9uSFwvs">
-                            <img src="https://img.youtube.com/vi/xUya9uSFwvs/sddefault.jpg" alt="夜の街イメージ YouTube動画">
-                        </a>
+                        <button type="button" popovertarget="xUya9uSFwvs">
+                            <img src="https://img.youtube.com/vi/xUya9uSFwvs/sddefault.jpg" alt="夜の街イメージの動画を再生">
+                        </button>
                         <figcaption>
-                            <span class="song">夜の街のイメージ (CC BY)</span>
+                            <span class="song">夜の街イメージ (CC BY)</span>
                             <span class="artist">shoot japan</span>
                         </figcaption>
                     </figure>
+                    <div class="tags">
+                        <span class="town"></span>
+                    </div>
+                    <iframe class="player" id="xUya9uSFwvs" popover loading="lazy" src="https://www.youtube.com/embed/xUya9uSFwvs" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </li>
                 <li class="card">
                     <figure>
-                        <a href="https://www.youtube.com/watch?v=nXuG6pE6Xa4">
-                            <img src="https://img.youtube.com/vi/nXuG6pE6Xa4/sddefault.jpg" alt="東京新宿 夜の風景 YouTube動画">
-                        </a>
+                        <button type="button" popovertarget="nXuG6pE6Xa4">
+                            <img src="https://img.youtube.com/vi/nXuG6pE6Xa4/sddefault.jpg" alt="東京新宿 夜の風景の動画を再生">
+                        </button>
                         <figcaption>
                             <span class="song">東京新宿 夜の風景 (CC BY)</span>
                             <span class="artist">shoot japan</span>
                         </figcaption>
                     </figure>
+                    <div class="tags">
+                        <span class="town"></span>
+                    </div>
+                    <iframe class="player" id="nXuG6pE6Xa4" popover loading="lazy" src="https://www.youtube.com/embed/nXuG6pE6Xa4" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </li>
                 <li class="card">
                     <figure>
-                        <a href="https://www.youtube.com/watch?v=jZI_0C-5U8Q">
-                            <img src="https://img.youtube.com/vi/jZI_0C-5U8Q/sddefault.jpg" alt="ローカル線の車窓動画 YouTube動画">
-                        </a>
+                        <button type="button" popovertarget="jZI_0C-5U8Q">
+                            <img src="https://img.youtube.com/vi/jZI_0C-5U8Q/sddefault.jpg" alt="ローカル線の車窓動画の動画を再生">
+                        </button>
                         <figcaption>
                             <span class="song">ローカル線の車窓動画 (CC BY)</span>
                             <span class="artist">shoot japan</span>
                         </figcaption>
                     </figure>
+                    <div class="tags">
+                        <span class="railroad"></span>
+                        <span class="recommended"></span>
+                    </div>
+                    <iframe class="player" id="jZI_0C-5U8Q" popover loading="lazy" src="https://www.youtube.com/embed/jZI_0C-5U8Q" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </li>
+                <li class="card">
+                    <figure>
+                        <button type="button" popovertarget="kHyVKWzV22w">
+                            <img src="https://img.youtube.com/vi/kHyVKWzV22w/hqdefault.jpg" alt="雪の日の車窓動画の動画を再生">
+                        </button>
+                        <figcaption>
+                            <span class="song">雪の日の車窓動画 (CC BY)</span>
+                            <span class="artist">shoot japan</span>
+                        </figcaption>
+                    </figure>
+                    <div class="tags">
+                        <span class="railroad"></span>
+                    </div>
+                    <iframe class="player" id="kHyVKWzV22w" popover loading="lazy" src="https://www.youtube.com/embed/kHyVKWzV22w" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </li>
+                <li class="card">
+                    <figure>
+                        <button type="button" popovertarget="7IzaQMPWBD4">
+                            <img src="https://img.youtube.com/vi/7IzaQMPWBD4/sddefault.jpg" alt="日本の風景 長野県松本市の動画を再生">
+                        </button>
+                        <figcaption>
+                            <span class="song">日本の風景 長野県松本市 (CC BY)</span>
+                            <span class="artist">shoot japan</span>
+                        </figcaption>
+                    </figure>
+                    <div class="tags">
+                        <span class="recommended"></span>
+                        <span class="landscape"></span>
+                        <span class="town"></span>
+                    </div>
+                    <iframe class="player" id="7IzaQMPWBD4" popover loading="lazy" src="https://www.youtube.com/embed/7IzaQMPWBD4" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </li>
+                <li class="card">
+                    <figure>
+                        <button type="button" popovertarget="l-EkoUzqqrk">
+                            <img src="https://img.youtube.com/vi/l-EkoUzqqrk/sddefault.jpg" alt="東京スカイツリー 夕方から夜への動画を再生">
+                        </button>
+                        <figcaption>
+                            <span class="song">東京スカイツリー 夕方から夜へ (CC BY)</span>
+                            <span class="artist">shoot japan</span>
+                        </figcaption>
+                    </figure>
+                    <div class="tags">
+                        <span class="landscape"></span>
+                    </div>
+                    <iframe class="player" id="l-EkoUzqqrk" popover loading="lazy" src="https://www.youtube.com/embed/l-EkoUzqqrk" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </li>
+                <li class="card">
+                    <figure>
+                        <button type="button" popovertarget="7PLMpry7x60">
+                            <img src="https://img.youtube.com/vi/7PLMpry7x60/sddefault.jpg" alt="長尾峠から箱根 芦ノ湖が見える絶景パノラマ風景の動画を再生">
+                        </button>
+                        <figcaption>
+                            <span class="song">長尾峠から箱根 芦ノ湖が見える絶景パノラマ風景 (CC BY)</span>
+                            <span class="artist">shoot japan</span>
+                        </figcaption>
+                    </figure>
+                    <div class="tags">
+                        <span class="landscape"></span>
+                        <span class="recommended"></span>
+                    </div>
+                    <iframe class="player" id="7PLMpry7x60" popover loading="lazy" src="https://www.youtube.com/embed/7PLMpry7x60" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </li>
+                <li class="card">
+                    <figure>
+                        <button type="button" popovertarget="jiOUus2rkcA">
+                            <img src="https://img.youtube.com/vi/jiOUus2rkcA/sddefault.jpg" alt="雨の動画を再生">
+                        </button>
+                        <figcaption>
+                            <span class="song">雨 (CC BY)</span>
+                            <span class="artist">shoot japan</span>
+                        </figcaption>
+                    </figure>
+                    <div class="tags">
+                        <span class="landscape"></span>
+                        <span class="weather"></span>
+                    </div>
+                    <iframe class="player" id="jiOUus2rkcA" popover loading="lazy" src="https://www.youtube.com/embed/jiOUus2rkcA" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </li>
+                <li class="card">
+                    <figure>
+                        <button type="button" popovertarget="_ixZMVAa-zo">
+                            <img src="https://img.youtube.com/vi/_ixZMVAa-zo/sddefault.jpg" alt="桜の動画を再生">
+                        </button>
+                        <figcaption>
+                            <span class="song">桜 (CC BY)</span>
+                            <span class="artist">shoot japan</span>
+                        </figcaption>
+                    </figure>
+                    <div class="tags">
+                        <span class="landscape"></span>
+                    </div>
+                    <iframe class="player" id="_ixZMVAa-zo" popover loading="lazy" src="https://www.youtube.com/embed/_ixZMVAa-zo" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </li>
             </ul>
         </section>
     </main>
 
+
     <aside>
-        <section id="about-me">
+        <section id="about-me" class="about-me">
             <header>
                 <h2>about me.</h2>
             </header>
-            <p>
-                lulliecatのproducerです。
-                好きな音楽のジャンルはヘヴィメタルとアニソンです。
-                中学生の頃からヘヴィメタルを聞き始めました。
-            </p>
-            <p>
-                その後、どうやらスラッシュメタルというジャンルが凄いらしい、と当時の同級生との会話できき、<em>Metallica</em>の<em>Master of Puppets</em>を買って盛り上がりまくっていました。
-                友だちは<em>Ride the Lightning</em>を買っていました。
-                どちらも名作ですね。
-            </p>
-            <p>
-                そのうち、正直記憶はおぼろげなのですが、なんだかジャーマンメタルと呼ばれるものが良いらしい、と聞いてそちらの方も聞こうとしました。
-                <em>Insanity and Genius</em>の頃です。
-            </p>
-            <p>
-                当時は、Victorからpure metal samplerというオムニバスアルバムが出始めた頃で、それで様々なバンドの音をつまみ食いしてCDを買う参考にできたのも大きかったです。
-                何買ったかな、色々かった気がするな。
-                Helloweenもめでたく<em>守護神伝I, II</em>(何故かこれだけ邦題で書く人です)を手に入れてすごくはまりましたし、<em>Blind Guardian</em>の<em>Somewhere Far Beyond</em>もかって、もうこれが本当にすごくすごくて、今でも聞いています。
-            </p>
+            <div class="columns">
+                <div class="column">
+                    <p>
+                        lulliecatのproducerです。
+                        好きな音楽のジャンルはヘヴィメタルとアニソンです。
+                        中学生の頃からヘヴィメタルを聞き始めました。
+                    </p>
+                    <p>
+                        その後、どうやらスラッシュメタルというジャンルが凄いらしい、と当時の同級生との会話できき、<em>Metallica</em>の<em>Master of Puppets</em>を買って盛り上がりまくっていました。
+                        友だちは<em>Ride the Lightning</em>を買っていました。
+                        どちらも名作ですね。
+                    </p>
+                    <p>
+                        そのうち、正直記憶はおぼろげなのですが、なんだかジャーマンメタルと呼ばれるものが良いらしい、と聞いてそちらの方も聞こうとしました。
+                        <em>Insanity and Genius</em>の頃です。
+                    </p>
+                </div>
+                <div class="column">
+                    <p>
+                        当時は、Victorからpure metal samplerというオムニバスアルバムが出始めた頃で、それで様々なバンドの音をつまみ食いしてCDを買う参考にできたのも大きかったです。
+                        何買ったかな、色々かった気がするな。
+                        Helloweenもめでたく<em>守護神伝I, II</em>(何故かこれだけ邦題で書く人です)を手に入れてすごくはまりましたし、<em>Blind Guardian</em>の<em>Somewhere Far Beyond</em>もかって、もうこれが本当にすごくすごくて、今でも聞いています。
+                    </p>
+                </div>
+            </div>
         </section>
     </aside>
-    <footer class="page-footer">© 2026 lulliecat</footer>
+
+    <footer class="page-footer">
+        © 2026 lulliecat
+    </footer>
 </body>
 </html>
