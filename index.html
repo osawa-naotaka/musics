@@ -39,6 +39,8 @@
             --main-color: #303030;
             --main-color-dim: #303030f0;
             --shadow-color: #000000;
+
+            --max-content-width: 1200px;
         }
 
         /* 全体的な設定 */
@@ -61,6 +63,10 @@
         }
 
         /* セクション */
+        section {
+            max-width: var(--max-content-width);
+            margin-inline: auto;
+        }
         section > header {
             margin-block-end: 1rlh;
         }
@@ -92,9 +98,18 @@
         .card img {
             border-radius: 8px;
             box-shadow: 0 0 10px var(--shadow-color);
+
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
         }
         .card .artist::before {
             content: " / ";
+        }
+
+        /* about me */
+        .about-me p {
+            margin-block: 1rlh;
         }
 
         /* ページフッター */
@@ -118,7 +133,7 @@
     </header>
 
     <main>
-        <section id="music-videos">
+        <section id="music-videos" class="music-videos">
             <header>
                 <h2>music videos.</h2>
             </header>
@@ -161,7 +176,7 @@
     </main>
 
     <aside>
-        <section id="about-me">
+        <section id="about-me" class="about-me">
             <header>
                 <h2>about me.</h2>
             </header>
